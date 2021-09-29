@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
-RUN apt update
-RUN apt install -y git wget
+FROM archlinux:latest
+RUN pacman -Syu
+RUN pacman -S git wget --noconfirm
 
 ARG RELEASE_TAG
 
