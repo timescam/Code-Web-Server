@@ -1,5 +1,5 @@
 FROM archlinux:latest
-RUN pacman -Syu
+RUN pacman -Syu --noconfirm
 RUN pacman -S git wget --noconfirm
 
 ARG RELEASE_TAG
