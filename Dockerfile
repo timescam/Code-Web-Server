@@ -13,7 +13,9 @@ RUN wget https://github.com/gitpod-io/openvscode-server/releases/download/${RELE
 RUN tar -xzf ${RELEASE_TAG}-linux-x64.tar.gz
 
 # product.json patch
-RUN echo '"extensionsGallery": { "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery", "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index", "itemUrl": "https://marketplace.visualstudio.com/items" }' > /home/${RELEASE_TAG}-linux-x64/product.json
+RUN cp /home/${RELEASE_TAG}-linux-x64/product.json /tmp/.product.json
+RUN jq -M '.extensionsGallery.serviceUrl |= "https://marketplace.visualstudio.com/_apis/public/gallery" | .extensionsGallery.itemUrl |= "https://marketplace.visualstudio.com/items" | .extensionsGallery.cacheUrl = "https://vscode.blob.core.windows.net/gallery/index"' /tmp/.product.json > /home/${RELEASE_TAG}-linux-x64/product.json
+RUN rm /tmp/.product.json
 
 # Creating the user and usergroup
 RUN useradd vscode-server && \
