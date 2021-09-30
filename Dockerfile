@@ -1,6 +1,6 @@
-FROM archlinux:base-devel
+FROM archlinux:latest
 RUN pacman -Syu --noconfirm
-RUN pacman -S git wget --noconfirm
+RUN pacman -S git wget opendoas --noconfirm
 
 ARG RELEASE_TAG
 
@@ -16,6 +16,7 @@ RUN tar -xzf ${RELEASE_TAG}-linux-x64.tar.gz
 RUN useradd vscode-server && \
     passwd -d vscode-server && \
     usermod -a -G vscode-server,wheel vscode-server
+RUN echo "permit :wheel" > /etc/doas.conf
 
 RUN chmod g+rw /home && \
     mkdir -p /home/vscode && \
