@@ -1,3 +1,3 @@
-# OpenVSCode Server releases
+# Code Web Server
 
-This repo is only to produce releases for [OpenVSCode Server](https://github.com/gitpod-io/openvscode-server).
+dockerfile of [OpenVSCode Server](https://github.com/gitpod-io/openvscode-server).
