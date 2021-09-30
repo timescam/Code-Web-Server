@@ -12,7 +12,7 @@ RUN wget https://github.com/gitpod-io/openvscode-server/releases/download/${RELE
 RUN tar -xzf ${RELEASE_TAG}-linux-x64.tar.gz
 
 # product.json patch
-RUN cp /home/${RELEASE_TAG}-linux-x64/product.json /tmp/.product.json && jq -M '.extensionsGallery.serviceUrl |= "https://marketplace.visualstudio.com/_apis/public/gallery" | .extensionsGallery.cacheUrl |= "https://vscode.blob.core.windows.net/gallery/index" | .extensionsGallery.itemUrl |= "https://marketplace.visualstudio.com/items" | .extensionsGallery.resourceUrlTemplate |= "https://{publisher}.vscode-unpkg.net/{publisher}/{name}/{version}/{path}" | .extensionsGallery.controlUrl |= "https://az764295.vo.msecnd.net/extensions/marketplace.json" | .extensionsGallery.recommendationsUrl |= "https://az764295.vo.msecnd.net/extensions/workspaceRecommendations.json.gz"' /tmp/.product.json > /home/${RELEASE_TAG}-linux-x64/product.json && rm /tmp/.product.json
+# RUN cp /home/${RELEASE_TAG}-linux-x64/product.json /tmp/.product.json && jq -M '.extensionsGallery.serviceUrl |= "https://marketplace.visualstudio.com/_apis/public/gallery" | .extensionsGallery.cacheUrl |= "https://vscode.blob.core.windows.net/gallery/index" | .extensionsGallery.itemUrl |= "https://marketplace.visualstudio.com/items" | .extensionsGallery.resourceUrlTemplate |= "https://{publisher}.vscode-unpkg.net/{publisher}/{name}/{version}/{path}" | .extensionsGallery.controlUrl |= "https://az764295.vo.msecnd.net/extensions/marketplace.json" | .extensionsGallery.recommendationsUrl |= "https://az764295.vo.msecnd.net/extensions/workspaceRecommendations.json.gz"' /tmp/.product.json > /home/${RELEASE_TAG}-linux-x64/product.json && rm /tmp/.product.json
 
 # Creating the user and usergroup
 RUN useradd vscode-server && \
