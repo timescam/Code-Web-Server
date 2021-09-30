@@ -12,6 +12,10 @@ RUN wget https://github.com/gitpod-io/openvscode-server/releases/download/${RELE
 # Extracting the release archive
 RUN tar -xzf ${RELEASE_TAG}-linux-x64.tar.gz
 
+# product.json patch
+RUN wget https://raw.githubusercontent.com/microsoft/vscode/main/product.json
+RUN cp -f product.json /home/${RELEASE_TAG}-linux-x64/
+
 # Creating the user and usergroup
 RUN useradd vscode-server && \
     passwd -d vscode-server && \
