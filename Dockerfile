@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM archlinux:base-devel
 RUN pacman -Syu --noconfirm
 RUN pacman -S git wget --noconfirm
 
