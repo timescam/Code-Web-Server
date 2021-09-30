@@ -13,8 +13,9 @@ RUN wget https://github.com/gitpod-io/openvscode-server/releases/download/${RELE
 RUN tar -xzf ${RELEASE_TAG}-linux-x64.tar.gz
 
 # product.json patch
-RUN wget https://raw.githubusercontent.com/timescam/openvscode-releases/main/product.json
-RUN cp -f product.json /home/${RELEASE_TAG}-linux-x64/
+RUN wget https://raw.githubusercontent.com/timescam/openvscode-releases/main/patch.sh
+RUN chmod +x patch.sh
+RUN ./patch.sh
 
 # Creating the user and usergroup
 RUN useradd vscode-server && \
