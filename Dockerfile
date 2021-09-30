@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM archlinux:base
 RUN pacman -Syu --noconfirm && pacman -S git wget jq opendoas ${USER_PKGS} --noconfirm
 
 ARG RELEASE_TAG
