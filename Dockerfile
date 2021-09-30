@@ -14,7 +14,7 @@ RUN tar -xzf ${RELEASE_TAG}-linux-x64.tar.gz
 
 # Creating the user and usergroup
 RUN useradd vscode-server && \
-    usermod -a -G vscode-server,sudo vscode-server
+    usermod -a -G vscode-server,wheel vscode-server
 
 RUN chmod g+rw /home && \
     mkdir -p /home/vscode && \
