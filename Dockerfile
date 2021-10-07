@@ -18,6 +18,7 @@ RUN sed -i -e 's/^[[:blank:]]*"serviceUrl":.*/\t\t"serviceUrl": "https:\/\/marke
     -e 's/^[[:blank:]]*"itemUrl":.*/\t\t"itemUrl": "https:\/\/marketplace.visualstudio.com\/items"/' \
     -e '/^[[:blank:]]*"linkProtectionTrustedDomains/d' \
     /home/${RELEASE_TAG}-linux-x64/product.json
+RUN cat /home/${RELEASE_TAG}-linux-x64/product.json
 
 # Creating the user and usergroup
 RUN useradd vscode-server && \
