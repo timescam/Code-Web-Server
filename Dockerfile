@@ -13,9 +13,7 @@ RUN tar -xzf ${RELEASE_TAG}-linux-x64.tar.gz
 
 # product.json patch
 RUN jq '.extensionsGallery |= . + {"serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery","cacheUrl": "https://vscode.blob.core.windows.net/gallery/index","itemUrl": "https://marketplace.visualstudio.com/items","resourceUrlTemplate": "https://{publisher}.vscode-unpkg.net/{publisher}/{name}/{version}/{path}","controlUrl": "https://az764295.vo.msecnd.net/extensions/marketplace.json","recommendationsUrl": "https://az764295.vo.msecnd.net/extensions/workspaceRecommendations.json.gz"}' \
-    /home/${RELEASE_TAG}-linux-x64/product.json
-
-RUN cat /home/${RELEASE_TAG}-linux-x64/product.json
+    /home/${RELEASE_TAG}-linux-x64/product.json > /home/${RELEASE_TAG}-linux-x64/product.json
 
 # Creating the user and usergroup
 RUN useradd vscode-server && \
