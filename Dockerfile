@@ -1,5 +1,5 @@
 FROM archlinux:base
-RUN pacman -Syu --noconfirm && pacman -S git wget jq opendoas ${USER_PKGS} --noconfirm
+RUN pacman -Syu --noconfirm && pacman -S git wget jq opendoas zsh which ${USER_PKGS} --noconfirm
 
 ARG RELEASE_TAG
 
@@ -37,6 +37,7 @@ ENV EDITOR=code
 ENV VISUAL=code
 ENV GIT_EDITOR="code --wait"
 ENV OPENVSCODE_SERVER_ROOT=/home/${RELEASE_TAG}-linux-x64
+ENV SHELL=/bin/zsh
 
 EXPOSE 3000
 
