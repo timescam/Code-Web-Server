@@ -12,9 +12,12 @@ RUN wget https://github.com/gitpod-io/openvscode-server/releases/download/${RELE
 RUN tar -xzf ${RELEASE_TAG}-linux-x64.tar.gz
 
 # product.json patch
-RUN cd /home/${RELEASE_TAG}-linux-x64 && rm product.json && wget https://raw.githubusercontent.com/timescam/Code-Web-Server/main/product.json
-WORKDIR /home/
-
+RUN sed -i -e 's/^[[:blank:]]*"serviceUrl":.*/\t\t"serviceUrl": "https:\/\/marketplace.visualstudio.com\/_apis\/public\/gallery",/' \
+    -e '/^[[:blank:]]*"cacheUrl/d' \
+    -e '/^[[:blank:]]*"serviceUrl/a\\t\t"cacheUrl": "https:\/\/vscode.blob.core.windows.net\/gallery\/index",' \
+    -e 's/^[[:blank:]]*"itemUrl":.*/\t\t"itemUrl": "https:\/\/marketplace.visualstudio.com\/items"/' \
+    -e '/^[[:blank:]]*"linkProtectionTrustedDomains/d' \
+    /home/${RELEASE_TAG}-linux-x64/product.json
 # Creating the user and usergroup
 RUN useradd vscode-server && \
     passwd -d vscode-server && \
