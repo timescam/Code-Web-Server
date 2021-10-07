@@ -12,7 +12,12 @@ RUN wget https://github.com/gitpod-io/openvscode-server/releases/download/${RELE
 RUN tar -xzf ${RELEASE_TAG}-linux-x64.tar.gz
 
 # product.json patch
-RUN sed -i -e 's/^[[:blank:]]*"serviceUrl":.*/\t\t"serviceUrl": "https:\/\/marketplace.visualstudio.com\/_apis\/public\/gallery",/' -e '/^[[:blank:]]*"cacheUrl/d' -e '/^[[:blank:]]*"serviceUrl/a\\t\t"cacheUrl": "https:\/\/vscode.blob.core.windows.net\/gallery\/index",' -e 's/^[[:blank:]]*"itemUrl":.*/\t\t"itemUrl": "https:\/\/marketplace.visualstudio.com\/items",/' -e '/^[[:blank:]]*"linkProtectionTrustedDomains/d' /home/${RELEASE_TAG}-linux-x64/product.json
+RUN sed -i -e 's/^[[:blank:]]*"serviceUrl":.*/\t\t"serviceUrl": "https:\/\/marketplace.visualstudio.com\/_apis\/public\/gallery"\,/' \
+    -e '/^[[:blank:]]*"cacheUrl/d' \
+    -e '/^[[:blank:]]*"serviceUrl/a\\t\t"cacheUrl": "https:\/\/vscode.blob.core.windows.net\/gallery\/index"\,' \
+    -e 's/^[[:blank:]]*"itemUrl":.*/\t\t"itemUrl": "https:\/\/marketplace.visualstudio.com\/items"/\,' \
+    -e '/^[[:blank:]]*"linkProtectionTrustedDomains/d' \
+    /home/${RELEASE_TAG}-linux-x64/product.json
 
 RUN cat /home/${RELEASE_TAG}-linux-x64/product.json
 
