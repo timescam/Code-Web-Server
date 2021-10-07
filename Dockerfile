@@ -17,8 +17,10 @@ RUN sed -i -e 's/^[[:blank:]]*"serviceUrl":.*/\t\t"serviceUrl": "https:\/\/marke
     -e '/^[[:blank:]]*"serviceUrl/a\\t\t"cacheUrl": "https:\/\/vscode.blob.core.windows.net\/gallery\/index",' \
     -e 's/^[[:blank:]]*"itemUrl":.*/\t\t"itemUrl": "https:\/\/marketplace.visualstudio.com\/items",/' \
     -e '/^[[:blank:]]*"linkProtectionTrustedDomains/d' \
-    /home/${RELEASE_TAG}-linux-x64/product.json && \
-    sed -i -e 's/\;//g' /home/${RELEASE_TAG}-linux-x64/product.json
+    /home/${RELEASE_TAG}-linux-x64/product.json
+    
+RUN sed -i -e 's/\;//g' /home/${RELEASE_TAG}-linux-x64/product.json
+
 RUN cat /home/${RELEASE_TAG}-linux-x64/product.json
 
 # Creating the user and usergroup
