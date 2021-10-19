@@ -1,7 +1,9 @@
 FROM archlinux:base
-RUN pacman -Syu --noconfirm && pacman -S git wget jq opendoas zsh which ${USER_PKGS} --noconfirm
 
 ARG RELEASE_TAG
+ARG USER_PKGS
+
+RUN pacman -Syu --noconfirm && pacman -S git wget jq opendoas zsh which ${USER_PKGS} --noconfirm
 
 WORKDIR /home/
 
